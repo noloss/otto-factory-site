@@ -88,7 +88,7 @@
       margin: 0 auto;
     }
 
-    /* ── How-it-works section placeholder ── */
+    /* ── How-it-works section ── */
     #how-it-works {
       padding: 4rem 1.5rem;
       text-align: center;
@@ -96,20 +96,64 @@
     }
 
     #how-it-works h2 {
-      font-size: 1.75rem;
+      font-size: clamp(1.5rem, 3vw, 1.75rem);
       color: #f0f6fc;
+      margin-bottom: 2.5rem;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .step {
+      flex: 1 1 240px;
+      max-width: 280px;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+    }
+
+    .step__number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: #58a6ff;
+      color: #0d1117;
+      font-size: 0.9rem;
+      font-weight: 700;
       margin-bottom: 1rem;
     }
 
-    #how-it-works pre {
-      display: inline-block;
-      background: #161b22;
-      color: #c9d1d9;
-      padding: 1.25rem 2rem;
-      border-radius: 6px;
+    .step__heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 0.5rem;
+    }
+
+    .step__desc {
       font-size: 0.95rem;
-      text-align: left;
-      margin-top: 1.5rem;
+      color: #8b949e;
+      line-height: 1.6;
+    }
+
+    .step__desc code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -133,8 +177,23 @@
   ════════════════════════════════════════════ -->
   <section id="how-it-works">
     <h2>How it works</h2>
-    <pre><code>python main.py plan   # turns your idea into a task list
-python main.py run    # executes the tasks and ships the code</code></pre>
+    <ol class="steps">
+      <li class="step">
+        <span class="step__number">1</span>
+        <h3 class="step__heading">Write a PRD</h3>
+        <p class="step__desc">Describe the feature or product you want to build in plain language — no code required.</p>
+      </li>
+      <li class="step">
+        <span class="step__number">2</span>
+        <h3 class="step__heading">Run the planner</h3>
+        <p class="step__desc">Run <code>python main.py plan</code> and otto-factory turns your PRD into a prioritised task list automatically.</p>
+      </li>
+      <li class="step">
+        <span class="step__number">3</span>
+        <h3 class="step__heading">Watch it build</h3>
+        <p class="step__desc">Run <code>python main.py run</code> and sit back while otto-factory writes, tests, and ships the code.</p>
+      </li>
+    </ol>
   </section>
 
   <!-- ═══════════════════════════════════════════
