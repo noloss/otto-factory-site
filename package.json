@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Landing page for otto-factory",
   "scripts": {
-    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js"
+    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js && node tests/get-started.test.js"
   },
   "license": "MIT"
 }

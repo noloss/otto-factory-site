@@ -69,7 +69,7 @@
       transform: translateY(0);
     }
 
-    /* ── Get-started section placeholder ── */
+    /* ── Get-started section ── */
     #get-started {
       padding: 4rem 1.5rem;
       text-align: center;
@@ -77,15 +77,95 @@
     }
 
     #get-started h2 {
-      font-size: 1.75rem;
+      font-size: clamp(1.5rem, 3vw, 1.75rem);
       color: #f0f6fc;
       margin-bottom: 1rem;
     }
 
-    #get-started p {
+    #get-started > p {
       color: #8b949e;
       max-width: 540px;
-      margin: 0 auto;
+      margin: 0 auto 2.5rem;
+    }
+
+    .get-started__steps {
+      list-style: none;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .get-started__step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .get-started__step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: #58a6ff;
+      color: #0d1117;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .get-started__step-body {
+      flex: 1;
+    }
+
+    .get-started__step-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 0.25rem;
+    }
+
+    .get-started__step-desc {
+      font-size: 0.95rem;
+      color: #8b949e;
+      line-height: 1.6;
+    }
+
+    .get-started__code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      color: #c9d1d9;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      overflow-x: auto;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      display: block;
+    }
+
+    .get-started__link {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid #58a6ff;
+      border-radius: 6px;
+      color: #58a6ff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .get-started__link:hover {
+      background: #58a6ff;
+      color: #0d1117;
     }
 
     /* ── How-it-works section ── */
@@ -323,9 +403,50 @@
   <section id="get-started">
     <h2>Get started</h2>
     <p>
-      Clone the repo, add your Claude API key, and start shipping.
-      otto-factory handles the rest.
+      Clone the repo, write a one-page PRD, and let otto-factory do the rest.
     </p>
+
+    <ol class="get-started__steps">
+      <li class="get-started__step">
+        <span class="get-started__step-number">1</span>
+        <div class="get-started__step-body">
+          <h3 class="get-started__step-heading">Clone the repository</h3>
+          <p class="get-started__step-desc">
+            Clone <a href="https://github.com/otto-factory/otto-factory" class="get-started__link" style="display:inline;padding:0;border:none;font-size:inherit;font-weight:inherit">otto-factory</a>
+            from GitHub and follow the setup instructions in the README.
+          </p>
+        </div>
+      </li>
+      <li class="get-started__step">
+        <span class="get-started__step-number">2</span>
+        <div class="get-started__step-body">
+          <h3 class="get-started__step-heading">Write your PRD</h3>
+          <p class="get-started__step-desc">
+            Create a plain-language product requirements document and save it as
+            <code>prd.md</code>. Then run the planner:
+          </p>
+        </div>
+      </li>
+      <li class="get-started__step">
+        <span class="get-started__step-number">3</span>
+        <div class="get-started__step-body">
+          <h3 class="get-started__step-heading">Run the agent</h3>
+          <p class="get-started__step-desc">
+            Start otto-factory and watch it write, test, and ship your first milestone.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <pre class="get-started__code"># Plan your milestones from a PRD
+python main.py plan --prd prd.md
+
+# Run the agent on a milestone
+python main.py run --milestone "Release 1"</pre>
+
+    <a href="https://github.com/otto-factory/otto-factory#readme" class="get-started__link">
+      Read the full README on GitHub
+    </a>
   </section>
 
 </body>
