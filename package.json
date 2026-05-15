@@ -1,0 +1,9 @@
+{
+  "name": "prompt-masker-site",
+  "version": "1.0.0",
+  "description": "Landing page for otto-factory",
+  "scripts": {
+    "test": "node tests/hero.test.js"
+  },
+  "license": "MIT"
+}
