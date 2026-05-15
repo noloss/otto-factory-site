@@ -1,119 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>otto-factory — AI-powered software factory</title>
-  <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt Masker</title>
+    <style>
+      /* ── Design tokens ── */
+      :root {
+        --color-bg: #0d1117;
+        --color-text: white;
+        --color-muted: #8b949e;
+        --color-accent: #58a6ff;
+        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
-      line-height: 1.6;
-    }
+      /* ── Reset & base ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1.5rem;
-    }
+      body {
+        background-color: var(--color-bg);
+        color: white;
+        font-family: var(--font-sans);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
 
-    .hero__headline {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      color: #f0f6fc;
-      max-width: 800px;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-    }
+      /* ── Hero ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
 
-    .hero__headline em {
-      font-style: normal;
-      color: #58a6ff;
-    }
+      .hero__headline {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        color: #f0f6fc;
+        max-width: 800px;
+        margin-bottom: 1.25rem;
+        letter-spacing: -0.02em;
+      }
 
-    .hero__subheadline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: #8b949e;
-      max-width: 640px;
-      margin-bottom: 2.5rem;
-    }
+      .hero__headline em {
+        font-style: normal;
+        color: var(--color-accent);
+      }
 
-    /* ── CTA button ── */
-    .btn-primary {
-      display: inline-block;
-      padding: 0.875rem 2rem;
-      background: #58a6ff;
-      color: #0d1117;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
+      .hero__subheadline {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        color: var(--color-muted);
+        max-width: 640px;
+        margin-bottom: 2.5rem;
+      }
 
-    .btn-primary:hover {
-      background: #79b8ff;
-      transform: translateY(-1px);
-    }
+      /* ── CTA button ── */
+      .btn-primary {
+        display: inline-block;
+        padding: 0.875rem 2rem;
+        background: var(--color-accent);
+        color: var(--color-bg);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.2s ease, transform 0.1s ease;
+      }
 
-    .btn-primary:active {
-      transform: translateY(0);
-    }
+      .btn-primary:hover {
+        background: #79b8ff;
+        transform: translateY(-1px);
+      }
 
-    /* ── Get-started section placeholder ── */
-    #get-started {
-      padding: 4rem 1.5rem;
-      text-align: center;
-      border-top: 1px solid #21262d;
-    }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
 
-    #get-started h2 {
-      font-size: 1.75rem;
-      color: #f0f6fc;
-      margin-bottom: 1rem;
-    }
+      /* ── Get-started section placeholder ── */
+      #get-started {
+        padding: 4rem 1.5rem;
+        text-align: center;
+        border-top: 1px solid #21262d;
+      }
 
-    #get-started p {
-      color: #8b949e;
-      max-width: 540px;
-      margin: 0 auto;
-    }
-  </style>
-</head>
-<body>
+      #get-started h2 {
+        font-size: 1.75rem;
+        color: #f0f6fc;
+        margin-bottom: 1rem;
+      }
 
-  <!-- ═══════════════════════════════════════════
-       HERO SECTION
-  ════════════════════════════════════════════ -->
-  <section class="hero">
-    <h1 class="hero__headline">
-      Turn your <em>Claude subscription</em> into a&nbsp;<em>software factory</em>
-    </h1>
-    <p class="hero__subheadline">
-      Describe what you want to build. otto-factory writes the code, tests it, and reviews it — automatically.
-    </p>
-    <a href="#get-started" class="btn-primary">Get started on GitHub</a>
-  </section>
+      #get-started p {
+        color: var(--color-muted);
+        max-width: 540px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
 
-  <!-- ═══════════════════════════════════════════
-       GET STARTED SECTION
-  ════════════════════════════════════════════ -->
-  <section id="get-started">
-    <h2>Get started</h2>
-    <p>
-      Clone the repo, add your Claude API key, and start shipping.
-      otto-factory handles the rest.
-    </p>
-  </section>
+    <!-- ═══════════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════════ -->
+    <section class="hero">
+      <h1 class="hero__headline">
+        Turn your <em>Claude subscription</em> into a&nbsp;<em>software factory</em>
+      </h1>
+      <p class="hero__subheadline">
+        Describe what you want to build. otto-factory writes the code, tests it, and reviews it — automatically.
+      </p>
+      <a href="#get-started" class="btn-primary">Get started on GitHub</a>
+    </section>
 
-</body>
+    <!-- ═══════════════════════════════════════════
+         GET STARTED SECTION
+    ════════════════════════════════════════════ -->
+    <section id="get-started">
+      <h2>Get started</h2>
+      <p>
+        Clone the repo, add your Claude API key, and start shipping.
+        otto-factory handles the rest.
+      </p>
+    </section>
+
+  </body>
 </html>
