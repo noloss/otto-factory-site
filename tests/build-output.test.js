@@ -105,36 +105,6 @@ test('Scenario 1: dist/index.html contains <!DOCTYPE html>', () => {
 // Scenario 2 – Built output contains no server-executable files
 // ---------------------------------------------------------------------------
 
-const SERVER_FILENAME_PATTERNS = [
-  /\.server\.js$/i,
-  /\.server\.mjs$/i,
-  /\.server\.cjs$/i,
-  /^server\.js$/i,
-  /^server\.mjs$/i,
-  /^server\.cjs$/i,
-  /^app\.js$/i,
-  /^app\.mjs$/i,
-  /^app\.cjs$/i,
-];
-
-const SERVER_ONLY_PACKAGES = [
-  'express',
-  'koa',
-  'fastify',
-  'hapi',
-  '@hapi/hapi',
-  'restify',
-  'connect',
-  'http-server',
-  'node-static',
-  'serve',
-  'helmet',
-  'morgan',
-  'body-parser',
-  'cors',
-  'compression',
-];
-
 test('Scenario 2: dist/ contains no .server.js files', () => {
   const files = collectFiles(distDir);
   const serverFiles = files.filter((f) => /\.server\.(js|mjs|cjs)$/i.test(path.basename(f)));
@@ -148,9 +118,8 @@ test('Scenario 2: dist/ contains no .server.js files', () => {
 test('Scenario 2: dist/ contains no back-end entry-point files (server.js, app.js, index.js)', () => {
   const serverEntryPoints = ['server.js', 'server.mjs', 'server.cjs', 'app.js', 'app.mjs', 'app.cjs', 'index.js'];
   const files = collectFiles(distDir).map((f) => path.basename(f));
-  const found = serverEntryPoints.filter((name) => files.includes(name) && name !== 'index.html');
-  // index.js is a Node entry point; index.html is fine
-  const badFound = found.filter((name) => name !== 'index.html');
+  // index.js is a Node entry point; index.html is a static file and is fine
+  const badFound = serverEntryPoints.filter((name) => files.includes(name));
   assert.strictEqual(
     badFound.length,
     0,
@@ -171,6 +140,33 @@ test('Scenario 2: dist/ contains no node_modules directory', () => {
   assert.ok(
     !fs.existsSync(nmPath),
     'Found node_modules/ inside dist/ — the build output must not include Node dependencies'
+  );
+});
+
+test('Scenario 2: all local asset references in dist/index.html resolve within dist/', () => {
+  const indexPath = path.join(distDir, 'index.html');
+  const content = fs.readFileSync(indexPath, 'utf8');
+
+  // Extract src/href attribute values from link, script, and img tags
+  const urlPattern = /(?:src|href)\s*=\s*["']([^"']+)["']/gi;
+  const localRefs = [];
+  let m;
+  while ((m = urlPattern.exec(content)) !== null) {
+    const val = m[1];
+    // Skip external URLs, data URIs, and fragment-only anchors
+    if (/^https?:\/\//i.test(val) || /^data:/i.test(val) || val.startsWith('#')) continue;
+    localRefs.push(val);
+  }
+
+  const missing = localRefs.filter((ref) => {
+    const resolved = path.resolve(distDir, ref.replace(/^\//, ''));
+    return !fs.existsSync(resolved);
+  });
+
+  assert.strictEqual(
+    missing.length,
+    0,
+    `Local asset reference(s) in dist/index.html not found in dist/: ${missing.join(', ')}`
   );
 });
 
