@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Landing page for otto-factory",
   "scripts": {
-    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js && node tests/get-started.test.js && node tests/footer.test.js && node tests/smooth-scroll.test.js && node tests/no-external-deps.test.js && node tests/seo.test.js && node tests/branding.test.js && node tests/rename.test.js && node tests/server-runtime-deps.test.js"
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('index.html')) { console.error('FAIL: index.html not found'); process.exit(1); } console.log('Build OK — static site ready (index.html)');\"",
+    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js && node tests/get-started.test.js && node tests/footer.test.js && node tests/smooth-scroll.test.js && node tests/no-external-deps.test.js && node tests/seo.test.js && node tests/branding.test.js && node tests/rename.test.js && node tests/server-runtime-deps.test.js && node tests/asset-paths.test.js"
   },
   "license": "MIT"
 }
