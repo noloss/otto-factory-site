@@ -4,7 +4,7 @@
   "description": "Landing page for otto-factory",
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js && node tests/get-started.test.js && node tests/footer.test.js && node tests/smooth-scroll.test.js && node tests/no-external-deps.test.js && node tests/seo.test.js && node tests/branding.test.js && node tests/rename.test.js && node tests/server-runtime-deps.test.js && node tests/asset-paths.test.js && node tests/build-output.test.js && node tests/workflow.test.js"
+    "test": "node tests/hero.test.js && node tests/skeleton.test.js && node tests/structure.test.js && node tests/how-it-works.test.js && node tests/no-api-key.test.js && node tests/get-started.test.js && node tests/footer.test.js && node tests/smooth-scroll.test.js && node tests/no-external-deps.test.js && node tests/seo.test.js && node tests/branding.test.js && node tests/rename.test.js && node tests/server-runtime-deps.test.js && node tests/asset-paths.test.js && node tests/build-output.test.js && node tests/workflow.test.js && node tests/e2e-deployment.test.js"
   },
   "license": "MIT"
 }
